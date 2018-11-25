@@ -60,10 +60,21 @@ Our ``baseline'' algorithm was an SVM with a linear kernel. Given the number of 
 We thought SVMs would be a better baseline model than alternatives like Decision Trees and Naive Bayes, as ultimately Decision Trees were too slow to train reliably on such a high dimensionality, and Naive Bayes has independence assumptions that are too strong, given the impact contiguity of pixels has on overall structure. Since Naive Bayes is a probabilistic approach, it may have had an advantage in handling the random noise, but ultimately we felt that the independence assumption outweighed that benefit, and we hoped to see similar improvements just from image preprocessing.
 
 \subsection{Neural Network}
-%% TODO!!!
+B. Fully Connected Feedforward Neuron Network  trained by backpropagation
+The neural network is considered a universal function approximator, which means that with enough nodes, a two-layer neural network can approximate any function within an error bound. Our goal is to build a neural network such that given the training data, it can automatically recognize the drawings in an image and output the corresponding class to that image. 
+We firstly define a feed forward neural network by creating multi-layered networks that activated  by sigmoid function. The networks contains one input layer, one output layer and multiple hidden layers. 
+The structure of the network is that input layer contains the input data. The input data of the hidden layer near the input layer is the input data multiples the weight between the two layers. This input will go through activation function and become the output of this layer. By using this “feed forward” process, we could obtain the predict output in output layer.
+The key training process is achieved by backpropagation:  an expression for the partial derivative ∂C/∂w of the cost function C with respect to any weight w (or bias b) in the network. 
 
 \subsection{Convolutional Neural Network}
-%% TODO!!!
+C. Convolutional Neural Network  
+A disadvantages of regular neural network is that it does not take into account about the structure of the input data. As a result, the performance of classifying data such as images are poor. 
+An better neural network method called Convolutional Neural Network has much better performance to classifying the image data. There are several reasons.
+First, CNN takes 3D tensor as input and its layer can transform an input 3D volume to output 3D with some differentiable function that may or may not have parameter. 
+Second, the CNN uses of local receptive fields, The concept of features local receptive fields rotates around data features only depending on a small region of interest in the image. 
+Lastly, the CNN uses of  parameter sharing and pooling. Parameter sharing shows how local features should be treated the same independently of where they are found in the image. Pooling means how the region in which a feature occurs is not as important as if it occurs in an image. 
+The hyper-parameters in this model includes batch size of each iteration, optimizer, learning rate of the optimizer, and number of epochs. Tuning of these parameters will be discussed ion the methodology section.
+
 
 \section{Methodology}
 
