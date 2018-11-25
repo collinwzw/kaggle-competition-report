@@ -25,79 +25,96 @@
 \IEEEauthorblockA{260679318}
 \and
 \IEEEauthorblockN{Ziwen Wang}
-\IEEEauthorblockA{\{email\}}
-\IEEEauthorblockA{\{student id\}}
+\IEEEauthorblockA{zi.w.wang@mail.mcgill.ca}
+\IEEEauthorblockA{260485169}
 }
 
 \maketitle
 
 \section{Introduction}
 
-For this project, we were tasked with training classifiers to recognize hand drawn images on a modified subset of the Google ``Quick, Draw!'' dataset.
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet tincidunt est. Aliquam tellus augue, imperdiet non magna rhoncus, tincidunt placerat mi. Aliquam eleifend nulla finibus tortor tincidunt, non maximus lectus dictum. Donec nec ultrices orci, ut elementum felis. Suspendisse id aliquam orci. Aenean auctor, velit eu venenatis feugiat, arcu diam molestie felis, nec faucibus mauris orci vel ante. Phasellus scelerisque laoreet risus quis sagittis.
 
-This dataset was altered with noise artifacts and various transformations to the images, so we needed to keep those modifications in mind when designing our solution.
+Cras feugiat, mauris sed maximus porta, enim elit molestie nulla, a imperdiet dui urna vel nisl. Etiam eu nulla augue. Nullam dui eros, fermentum ut viverra quis, venenatis nec lacus. Nullam congue eget ex eu vehicula. In sed lectus ac turpis lacinia suscipit non non ante. Phasellus lacus erat, sollicitudin et purus eget, venenatis euismod ante. Nulla vitae dui massa. Maecenas augue tortor, pharetra vitae blandit a, ultrices quis nibh. Sed facilisis enim libero, vitae pharetra nulla ornare at. Nam tristique enim vel ante interdum dictum. Quisque volutpat volutpat leo, in accumsan dui malesuada vel. Maecenas pellentesque augue in convallis tristique. Mauris elementum vel metus quis mattis. Nunc tristique scelerisque ullamcorper.
 
-We tackled this project by trying a variety of image pre-processing methods and using three classifiers: an SVM with a linear kernel, a feed-forward neural network, and a convolutional neural network (CNN).
+Quisque placerat est in enim maximus varius. Nunc nec lectus eu neque euismod viverra. Nullam non elementum purus, id pharetra sem. Vivamus vel vehicula tellus, eu pulvinar orci. Nunc scelerisque eget est sit amet luctus. Etiam et rhoncus odio, eu blandit eros. Phasellus gravida leo magna, quis ultricies risus viverra sit amet. Nunc finibus iaculis vehicula. Aenean nunc enim, sollicitudin at egestas ut, venenatis id ex. Proin at laoreet diam, ut viverra metus. Praesent a erat neque. Etiam volutpat lacinia dui interdum finibus. Praesent justo sem, scelerisque sit amet magna eu, maximus fermentum nibh.
 
-Of these, we saw the best performance with the CNN, and some aspects of image pre-processing helped produce the best results.
+Vivamus tempor pulvinar velit vitae venenatis. Etiam lectus massa, lacinia eu odio nec, iaculis congue tellus. Nam elit massa, malesuada quis diam ut, mollis rhoncus ex. Aliquam pellentesque lobortis lorem, interdum finibus elit ullamcorper vel. Nunc non hendrerit nibh, ut sagittis turpis. Donec dignissim lacus eu mi pretium tristique. Sed pharetra eu urna sed porttitor. Proin mollis turpis et nibh interdum ullamcorper. Nullam imperdiet fringilla lacus. Duis id nulla vitae lorem viverra hendrerit. Pellentesque id lorem eros. Duis semper blandit facilisis. Curabitur sed tempus enim.
+
+Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis dolor. Duis eu sollicitudin ligula, sed lobortis massa. Donec egestas convallis maximus. Mauris auctor egestas tellus nec vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In aliquet blandit elit a tempus. Donec urna augue, cursus quis leo a, porta blandit ligula. Quisque aliquet pellentesque nisl nec viverra. Maecenas dictum et lectus sed hendrerit. Nunc dapibus, nisl eu mattis hendrerit, eros lorem consectetur quam, ac accumsan erat risus vel metus. Quisque ipsum dui, bibendum sit amet suscipit non, pellentesque ac odio. Phasellus posuere, dui ut efficitur mattis, arcu arcu elementum ante, vel tristique mi mi sed nisl. Ut ut erat augue. Aliquam volutpat mollis vestibulum. 
 
 \section{Feature Design}
 
-The biggest difficulties faced by our dataset were the noise and the number of features. The sizes of the images caused training to take a long time, and the noise interfered significantly with our linear model.
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet tincidunt est. Aliquam tellus augue, imperdiet non magna rhoncus, tincidunt placerat mi. Aliquam eleifend nulla finibus tortor tincidunt, non maximus lectus dictum. Donec nec ultrices orci, ut elementum felis. Suspendisse id aliquam orci. Aenean auctor, velit eu venenatis feugiat, arcu diam molestie felis, nec faucibus mauris orci vel ante. Phasellus scelerisque laoreet risus quis sagittis.
 
-Our first attempt at pre-processing involved using smoothing and erosion based filters to reduce the impact of the noise and sharpen the main shape of the image under test. In doing this, we hoped our models would be more easily able to identify the features that were relevant to the label.
+Cras feugiat, mauris sed maximus porta, enim elit molestie nulla, a imperdiet dui urna vel nisl. Etiam eu nulla augue. Nullam dui eros, fermentum ut viverra quis, venenatis nec lacus. Nullam congue eget ex eu vehicula. In sed lectus ac turpis lacinia suscipit non non ante. Phasellus lacus erat, sollicitudin et purus eget, venenatis euismod ante. Nulla vitae dui massa. Maecenas augue tortor, pharetra vitae blandit a, ultrices quis nibh. Sed facilisis enim libero, vitae pharetra nulla ornare at. Nam tristique enim vel ante interdum dictum. Quisque volutpat volutpat leo, in accumsan dui malesuada vel. Maecenas pellentesque augue in convallis tristique. Mauris elementum vel metus quis mattis. Nunc tristique scelerisque ullamcorper.
 
-Our next approach was cropping the image based on pixel density, with the hope that the actual image would stand out from the noise. By cropping the image, we would drastically reduce the number of features to speed up training and improve performance by removing excessive noise interference.
+Quisque placerat est in enim maximus varius. Nunc nec lectus eu neque euismod viverra. Nullam non elementum purus, id pharetra sem. Vivamus vel vehicula tellus, eu pulvinar orci. Nunc scelerisque eget est sit amet luctus. Etiam et rhoncus odio, eu blandit eros. Phasellus gravida leo magna, quis ultricies risus viverra sit amet. Nunc finibus iaculis vehicula. Aenean nunc enim, sollicitudin at egestas ut, venenatis id ex. Proin at laoreet diam, ut viverra metus. Praesent a erat neque. Etiam volutpat lacinia dui interdum finibus. Praesent justo sem, scelerisque sit amet magna eu, maximus fermentum nibh.
 
-This unfortunately did not perfectly crop the images in question, and it took a very long time to pre-process the images, so we revisited this approach by using a contour-based approach, isolating the largest contiguous region of pixels and cropping around it. This was much faster than the density approach, and it provided significantly cleaner results. In addition, since the crop size was based on the input data, we were confident that our resultant size would be as minimal as feasibly possible.
+Vivamus tempor pulvinar velit vitae venenatis. Etiam lectus massa, lacinia eu odio nec, iaculis congue tellus. Nam elit massa, malesuada quis diam ut, mollis rhoncus ex. Aliquam pellentesque lobortis lorem, interdum finibus elit ullamcorper vel. Nunc non hendrerit nibh, ut sagittis turpis. Donec dignissim lacus eu mi pretium tristique. Sed pharetra eu urna sed porttitor. Proin mollis turpis et nibh interdum ullamcorper. Nullam imperdiet fringilla lacus. Duis id nulla vitae lorem viverra hendrerit. Pellentesque id lorem eros. Duis semper blandit facilisis. Curabitur sed tempus enim.
+
+Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis dolor. Duis eu sollicitudin ligula, sed lobortis massa. Donec egestas convallis maximus. Mauris auctor egestas tellus nec vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In aliquet blandit elit a tempus. Donec urna augue, cursus quis leo a, porta blandit ligula. Quisque aliquet pellentesque nisl nec viverra. Maecenas dictum et lectus sed hendrerit. Nunc dapibus, nisl eu mattis hendrerit, eros lorem consectetur quam, ac accumsan erat risus vel metus. Quisque ipsum dui, bibendum sit amet suscipit non, pellentesque ac odio. Phasellus posuere, dui ut efficitur mattis, arcu arcu elementum ante, vel tristique mi mi sed nisl. Ut ut erat augue. Aliquam volutpat mollis vestibulum. 
 
 \section{Algorithms}
 
-\subsection{Linear SVM}
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+B. Fully Connected Feedforward Neuron Network  trained by backpropagation
+The neural network is considered a universal function approximator, which means that with enough nodes, a two-layer neural network can approximate any function within an error bound. Our goal is to build a neural network such that given the training data, it can automatically recognize the drawings in an image and output the corresponding class to that image. 
+We firstly define a feed forward neural network by creating multi-layered networks that activated  by sigmoid function. The networks contains one input layer, one output layer and multiple hidden layers. 
+The structure of the network is that input layer contains the input data. The input data of the hidden layer near the input layer is the input data multiples the weight between the two layers. This input will go through activation function and become the output of this layer. By using this “feed forward” process, we could obtain the predict output in output layer.
+The key training process is achieved by backpropagation:  an expression for the partial derivative ∂C/∂w of the cost function C with respect to any weight w (or bias b) in the network. 
 
-Our ``baseline'' algorithm was an SVM with a linear kernel. Given the number of features and the interference with noise, we anticipated that the performance would be suboptimal, since finding key support vectors would be challenging.
+C. Convolutional Neural Network  
+A disadvantages of regular neural network is that it does not take into account about the structure of the input data. As a result, the performance of classifying data such as images are poor. 
+An better neural network method called Convolutional Neural Network has much better performance to classifying the image data. There are several reasons.
+First, CNN takes 3D tensor as input and its layer can transform an input 3D volume to output 3D with some differentiable function that may or may not have parameter. 
+Second, the CNN uses of local receptive fields, The concept of features local receptive fields rotates around data features only depending on a small region of interest in the image. 
+Lastly, the CNN uses of  parameter sharing and pooling. Parameter sharing shows how local features should be treated the same independently of where they are found in the image. Pooling means how the region in which a feature occurs is not as important as if it occurs in an image. 
+The hyper-parameters in this model includes batch size of each iteration, optimizer, learning rate of the optimizer, and number of epochs. Tuning of these parameters will be discussed ion the methodology section.
 
-We thought SVMs would be a better baseline model than alternatives like Decision Trees and Naive Bayes, as ultimately Decision Trees were too slow to train reliably on such a high dimensionality, and Naive Bayes has independence assumptions that are too strong, given the impact contiguity of pixels has on overall structure. Since Naive Bayes is a probabilistic approach, it may have had an advantage in handling the random noise, but ultimately we felt that the independence assumption outweighed that benefit, and we hoped to see similar improvements just from image preprocessing.
-
-\subsection{Neural Network}
-%% TODO!!!
-
-\subsection{Convolutional Neural Network}
-%% TODO!!!
 
 \section{Methodology}
 
-\subsection{Linear SVM}
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet tincidunt est. Aliquam tellus augue, imperdiet non magna rhoncus, tincidunt placerat mi. Aliquam eleifend nulla finibus tortor tincidunt, non maximus lectus dictum. Donec nec ultrices orci, ut elementum felis. Suspendisse id aliquam orci. Aenean auctor, velit eu venenatis feugiat, arcu diam molestie felis, nec faucibus mauris orci vel ante. Phasellus scelerisque laoreet risus quis sagittis.
 
-In implementing the SVM, we used Grid Search for cross-validation and hyperparameter tuning, testing values of the hyperparameters $C$ and $tol$ over a wide range (i.e. \{$10e-5, 10e-4, \ldots 10e5$\}).
+Cras feugiat, mauris sed maximus porta, enim elit molestie nulla, a imperdiet dui urna vel nisl. Etiam eu nulla augue. Nullam dui eros, fermentum ut viverra quis, venenatis nec lacus. Nullam congue eget ex eu vehicula. In sed lectus ac turpis lacinia suscipit non non ante. Phasellus lacus erat, sollicitudin et purus eget, venenatis euismod ante. Nulla vitae dui massa. Maecenas augue tortor, pharetra vitae blandit a, ultrices quis nibh. Sed facilisis enim libero, vitae pharetra nulla ornare at. Nam tristique enim vel ante interdum dictum. Quisque volutpat volutpat leo, in accumsan dui malesuada vel. Maecenas pellentesque augue in convallis tristique. Mauris elementum vel metus quis mattis. Nunc tristique scelerisque ullamcorper.
 
-\subsection{Neural Network}
+Quisque placerat est in enim maximus varius. Nunc nec lectus eu neque euismod viverra. Nullam non elementum purus, id pharetra sem. Vivamus vel vehicula tellus, eu pulvinar orci. Nunc scelerisque eget est sit amet luctus. Etiam et rhoncus odio, eu blandit eros. Phasellus gravida leo magna, quis ultricies risus viverra sit amet. Nunc finibus iaculis vehicula. Aenean nunc enim, sollicitudin at egestas ut, venenatis id ex. Proin at laoreet diam, ut viverra metus. Praesent a erat neque. Etiam volutpat lacinia dui interdum finibus. Praesent justo sem, scelerisque sit amet magna eu, maximus fermentum nibh.
 
-%% TODO!!
+Vivamus tempor pulvinar velit vitae venenatis. Etiam lectus massa, lacinia eu odio nec, iaculis congue tellus. Nam elit massa, malesuada quis diam ut, mollis rhoncus ex. Aliquam pellentesque lobortis lorem, interdum finibus elit ullamcorper vel. Nunc non hendrerit nibh, ut sagittis turpis. Donec dignissim lacus eu mi pretium tristique. Sed pharetra eu urna sed porttitor. Proin mollis turpis et nibh interdum ullamcorper. Nullam imperdiet fringilla lacus. Duis id nulla vitae lorem viverra hendrerit. Pellentesque id lorem eros. Duis semper blandit facilisis. Curabitur sed tempus enim.
 
-\subsection{Convolutional Neural Network}
-
-%% TODO!!!
+Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis dolor. Duis eu sollicitudin ligula, sed lobortis massa. Donec egestas convallis maximus. Mauris auctor egestas tellus nec vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In aliquet blandit elit a tempus. Donec urna augue, cursus quis leo a, porta blandit ligula. Quisque aliquet pellentesque nisl nec viverra. Maecenas dictum et lectus sed hendrerit. Nunc dapibus, nisl eu mattis hendrerit, eros lorem consectetur quam, ac accumsan erat risus vel metus. Quisque ipsum dui, bibendum sit amet suscipit non, pellentesque ac odio. Phasellus posuere, dui ut efficitur mattis, arcu arcu elementum ante, vel tristique mi mi sed nisl. Ut ut erat augue. Aliquam volutpat mollis vestibulum. 
 
 \section{Results}
 
-\subsection{Linear SVM}
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet tincidunt est. Aliquam tellus augue, imperdiet non magna rhoncus, tincidunt placerat mi. Aliquam eleifend nulla finibus tortor tincidunt, non maximus lectus dictum. Donec nec ultrices orci, ut elementum felis. Suspendisse id aliquam orci. Aenean auctor, velit eu venenatis feugiat, arcu diam molestie felis, nec faucibus mauris orci vel ante. Phasellus scelerisque laoreet risus quis sagittis.
 
-For our SVM, we achieved predictably poor performance, with an accuracy of 4.366\%. Given that a hypothetical random classifier would be expected to have an accuracy of 3.22\%, this was an improvement, but not one significant enough to warrant much further exploration. From hyperparameter tuning, we didn't see any performance increase, and at more extreme hyperparameter values, we often failed to converge on our training set.
+Cras feugiat, mauris sed maximus porta, enim elit molestie nulla, a imperdiet dui urna vel nisl. Etiam eu nulla augue. Nullam dui eros, fermentum ut viverra quis, venenatis nec lacus. Nullam congue eget ex eu vehicula. In sed lectus ac turpis lacinia suscipit non non ante. Phasellus lacus erat, sollicitudin et purus eget, venenatis euismod ante. Nulla vitae dui massa. Maecenas augue tortor, pharetra vitae blandit a, ultrices quis nibh. Sed facilisis enim libero, vitae pharetra nulla ornare at. Nam tristique enim vel ante interdum dictum. Quisque volutpat volutpat leo, in accumsan dui malesuada vel. Maecenas pellentesque augue in convallis tristique. Mauris elementum vel metus quis mattis. Nunc tristique scelerisque ullamcorper.
 
-Erosion and smoothing based image pre-processing didn't show any improvement to the overall results, but cropping the images with the contour-based approach gave accuracies of 5.66\%, which was a relatively significant jump compared to our previous score.
+Quisque placerat est in enim maximus varius. Nunc nec lectus eu neque euismod viverra. Nullam non elementum purus, id pharetra sem. Vivamus vel vehicula tellus, eu pulvinar orci. Nunc scelerisque eget est sit amet luctus. Etiam et rhoncus odio, eu blandit eros. Phasellus gravida leo magna, quis ultricies risus viverra sit amet. Nunc finibus iaculis vehicula. Aenean nunc enim, sollicitudin at egestas ut, venenatis id ex. Proin at laoreet diam, ut viverra metus. Praesent a erat neque. Etiam volutpat lacinia dui interdum finibus. Praesent justo sem, scelerisque sit amet magna eu, maximus fermentum nibh.
 
-\subsection{Neural Network}
-%% TODO!!!
-(Include results of neural network)
+Vivamus tempor pulvinar velit vitae venenatis. Etiam lectus massa, lacinia eu odio nec, iaculis congue tellus. Nam elit massa, malesuada quis diam ut, mollis rhoncus ex. Aliquam pellentesque lobortis lorem, interdum finibus elit ullamcorper vel. Nunc non hendrerit nibh, ut sagittis turpis. Donec dignissim lacus eu mi pretium tristique. Sed pharetra eu urna sed porttitor. Proin mollis turpis et nibh interdum ullamcorper. Nullam imperdiet fringilla lacus. Duis id nulla vitae lorem viverra hendrerit. Pellentesque id lorem eros. Duis semper blandit facilisis. Curabitur sed tempus enim.
 
-\subsection{Convolutional Neural Network}
-
-Ultimately, our Convolutional Neural Network gave us the best performance recorded, with an accuracy of 69.966\%. However, when we applied smoothing and cropping algorithms to our input data, we found that our performance stayed the same, and in some cases decreased. So as a whole, we achieved our best results with unprocessed input data.
-
-\subsection{Comparison}
-%% TODO!!!
-(Include any extra information, including a comparison between the three models)
+Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis dolor. Duis eu sollicitudin ligula, sed lobortis massa. Donec egestas convallis maximus. Mauris auctor egestas tellus nec vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In aliquet blandit elit a tempus. Donec urna augue, cursus quis leo a, porta blandit ligula. Quisque aliquet pellentesque nisl nec viverra. Maecenas dictum et lectus sed hendrerit. Nunc dapibus, nisl eu mattis hendrerit, eros lorem consectetur quam, ac accumsan erat risus vel metus. Quisque ipsum dui, bibendum sit amet suscipit non, pellentesque ac odio. Phasellus posuere, dui ut efficitur mattis, arcu arcu elementum ante, vel tristique mi mi sed nisl. Ut ut erat augue. Aliquam volutpat mollis vestibulum. 
 
 \section{Discussion}
 
@@ -117,12 +134,18 @@ Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis
 
 \section{Statement of Contributions}
 
-Charles made the most significant contributions to the methodology and implementation our pre-processing methods, handling the smoothing, erosion, and contour based approaches. He also contributed to the data analysis stemming from the pre-processing changes.
+%%
+%% FILLER TEXT
+%% Remove and fill in the section's content
+%%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet tincidunt est. Aliquam tellus augue, imperdiet non magna rhoncus, tincidunt placerat mi. Aliquam eleifend nulla finibus tortor tincidunt, non maximus lectus dictum. Donec nec ultrices orci, ut elementum felis. Suspendisse id aliquam orci. Aenean auctor, velit eu venenatis feugiat, arcu diam molestie felis, nec faucibus mauris orci vel ante. Phasellus scelerisque laoreet risus quis sagittis.
 
-Daniel handled the linear SVM baseline, including hyperparameter tuning and the resulting data analysis. He also contributed to the methodology of the pre-processing methods and contributed to writing the report.
+Cras feugiat, mauris sed maximus porta, enim elit molestie nulla, a imperdiet dui urna vel nisl. Etiam eu nulla augue. Nullam dui eros, fermentum ut viverra quis, venenatis nec lacus. Nullam congue eget ex eu vehicula. In sed lectus ac turpis lacinia suscipit non non ante. Phasellus lacus erat, sollicitudin et purus eget, venenatis euismod ante. Nulla vitae dui massa. Maecenas augue tortor, pharetra vitae blandit a, ultrices quis nibh. Sed facilisis enim libero, vitae pharetra nulla ornare at. Nam tristique enim vel ante interdum dictum. Quisque volutpat volutpat leo, in accumsan dui malesuada vel. Maecenas pellentesque augue in convallis tristique. Mauris elementum vel metus quis mattis. Nunc tristique scelerisque ullamcorper.
 
-Ziwen took the initiative on the Neural Network and Convolutional Neural Network, handling the methodology, implementation, and data analysis.
+Quisque placerat est in enim maximus varius. Nunc nec lectus eu neque euismod viverra. Nullam non elementum purus, id pharetra sem. Vivamus vel vehicula tellus, eu pulvinar orci. Nunc scelerisque eget est sit amet luctus. Etiam et rhoncus odio, eu blandit eros. Phasellus gravida leo magna, quis ultricies risus viverra sit amet. Nunc finibus iaculis vehicula. Aenean nunc enim, sollicitudin at egestas ut, venenatis id ex. Proin at laoreet diam, ut viverra metus. Praesent a erat neque. Etiam volutpat lacinia dui interdum finibus. Praesent justo sem, scelerisque sit amet magna eu, maximus fermentum nibh.
 
-We hereby state that all the work presented in this report is that of the authors. 
+Vivamus tempor pulvinar velit vitae venenatis. Etiam lectus massa, lacinia eu odio nec, iaculis congue tellus. Nam elit massa, malesuada quis diam ut, mollis rhoncus ex. Aliquam pellentesque lobortis lorem, interdum finibus elit ullamcorper vel. Nunc non hendrerit nibh, ut sagittis turpis. Donec dignissim lacus eu mi pretium tristique. Sed pharetra eu urna sed porttitor. Proin mollis turpis et nibh interdum ullamcorper. Nullam imperdiet fringilla lacus. Duis id nulla vitae lorem viverra hendrerit. Pellentesque id lorem eros. Duis semper blandit facilisis. Curabitur sed tempus enim.
+
+Sed id pretium neque, sed pretium mi. Vestibulum eget tincidunt felis, id mollis dolor. Duis eu sollicitudin ligula, sed lobortis massa. Donec egestas convallis maximus. Mauris auctor egestas tellus nec vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In aliquet blandit elit a tempus. Donec urna augue, cursus quis leo a, porta blandit ligula. Quisque aliquet pellentesque nisl nec viverra. Maecenas dictum et lectus sed hendrerit. Nunc dapibus, nisl eu mattis hendrerit, eros lorem consectetur quam, ac accumsan erat risus vel metus. Quisque ipsum dui, bibendum sit amet suscipit non, pellentesque ac odio. Phasellus posuere, dui ut efficitur mattis, arcu arcu elementum ante, vel tristique mi mi sed nisl. Ut ut erat augue. Aliquam volutpat mollis vestibulum. 
 
 \end{document}
